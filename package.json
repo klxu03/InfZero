@@ -12,7 +12,7 @@
     "url": "git+https://github.com/klxu03/InfZero.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Colvin",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/klxu03/InfZero/issues"
@@ -26,6 +26,5 @@
   },
   "devDependencies": {
     "nodemon": "^1.19.4"
-  },
-  "author" : "Colvin",
+  }
 }
