@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Cpt Zero vs Infinitus</title>
+
+<!-- Bootstrap -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+<meta property="og:title" content="Fluid — Animated Coming Soon Template" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="images/bg-one.jpg" />
+
+<script src="/cdn-cgi/apps/head/-mEFVS8y7qx5pVzWHQTCQu5gnVM.js"></script><link rel="stylesheet" href="css/app.min.css" />
+</head>
+<body>
+<div class="animation anim-dark" data-aos="slide-effect-2">
+<div class="wrapper animation-inner">
+<div class="background bg-one overlay">
+</div>
+
+<div class="content-section d-flex justify-content-center align-items-center">
+<div class="v-lines">
+<div class="vline-1"></div>
+<div class="vline-2"></div>
+<div class="vline-3"></div>
+<div class="vline-4"></div>
+</div>
+<div class="container">
+<div class="center-content text-light align-self-center">
+  <!-- The Big Captain Zero vs Infinitus, The Delay is 0 Seconds -->
+<img src="images/freedom.png" class="img-fluid" alt="creative freedom" data-aos="fade" data-aos-delay="0" />
+<p class="lead my-4" data-aos="fade" data-aos-delay="2500">Get Ready for the Adventure of a Life Time</p>
+
+<span class="animation anim-light" data-aos="slide-effect-btn" data-aos-delay="3000">
+
+<!-- Play Button -->
+<button onclick = "Submitted()" class="btn btn-lg btn-outline" id='play-btn'>Play!</button>
+
+</span>
+
+<!-- Input Username -->
+<br><br>
+
+<div id="tableDiv" class="dropdown">
+  <button id="tableButton" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+      Select Your Grade
+      <span class="caret"></span>
+  </button>
+  <ul id="tableMenu" class="dropdown-menu">
+      <li><a href="#">9 and Under</a></li>
+      <li><a href="#">10</a></li>
+      <li><a href="#">11</a></li>
+      <li><a href="#">12 and Above</a></li>
+  </ul>
+</div>
+
+<br>
+
+<input type="username" id="inputUsername" class="form-control" style = "border:2px solid rgb(207, 127, 221)">
+<small id="passwordHelpBlock" class="form-text text-muted" style = "color: white">
+  Your username must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+</small>
+
+</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/app.min.js"></script>
+
+<script>
+
+var grade = "Sped (Forgot to Enter)";
+
+$("#tableMenu a").click(function(e){
+    e.preventDefault(); // cancel the link behaviour
+    var selText = $(this).text();
+    grade = selText;
+    $("#tableButton").text(selText);
+});
+
+    document.getElementById('play-btn').onclick = function() {
+      // console.log("Play Button Clicked");
+        // $.ajax({
+        //   url: "../routes/api/infzero",
+        //   method: 'GET',
+        //   data: {"username": "Yomama", "grade": "11"},
+        //   success: function(data) {
+        //     window.location.replace("http://localhost:5000/game");
+        //     console.log(data);
+        //   }
+        // })
+
+        //Redirects you to the game
+
+        var username = document.getElementById('inputUsername').value
+
+        window.location.replace("http://localhost:5000/game/" + username + "/" + grade);
+    };
+</script>
+
+</body>
+</html>

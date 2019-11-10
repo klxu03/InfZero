@@ -1,0 +1,12 @@
+tbody {
+    color: white;
+}
+
+thead {
+    color: yellow;
+}
+
+.table-hover tbody tr:hover {
+    background: white;
+    color: red;
+}
