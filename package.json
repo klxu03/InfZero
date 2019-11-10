@@ -2,7 +2,7 @@
   "name": "InfZero",
   "version": "1.0.0",
   "description": "",
-  "main": "script2.js",
+  "main": "express.js",
   "scripts": {
     "start": "node script2.js",
     "dev": "nodemon script2"
