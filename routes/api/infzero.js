@@ -44,9 +44,11 @@ router.get('/leaderboard/:score', (req, res) => {
 
     //Goes ahead and finds the time of this request, (could store every single time in NodeFS?)
     var timeOfLeaderboardReq = "" + `${moment().format()}`;
+    var date = timeOfLeaderboardReq.substring(0, 10);
+    var tiempo = timeOfLeaderboardReq.substring(11, 19);
 
-    console.log("Date is " + timeOfLeaderboardReq.substring(0, 10));
-    console.log("The Time is " + timeOfLeaderboardReq.substring(11, 19));
+    console.log("Date is " + date);
+    console.log("The Time is " + tiempo);
 
     var place = 505;
     var conditionOfInsertion = true;
@@ -54,7 +56,7 @@ router.get('/leaderboard/:score', (req, res) => {
         con.query(`SELECT * FROM allTimeLeaderboard WHERE position = ${i}`, (err, rows) => {
             rows = rows['rows'];
             let currScore = rows[0].score;
-            if (runScore > currScore && conditionOfInsertion) {
+            if (runScore > currScore && place < rows[0].place) {
                 place = rows[0].position;
                 conditionOfInsertion = false;
             }
@@ -63,6 +65,7 @@ router.get('/leaderboard/:score', (req, res) => {
 
     if (place != 505) {//As long as the new person actually placed in the top 500
         //This goes ahead and replaces all the previous rows with an extra number in position since everything gets moved down by one
+        con.query(`INSERT INTO allTimeLeaderboard (position, username, score, grade, date, time) VALUES (${place}, ${username}, ${runScore}, ${grade}, ${date}, ${tiempo})`);
         for (var i = place + 1; i < 500; i++) {
             con.query(`SELECT * FROM allTimeLeaderboard WHERE position = ${i}`, (err, rows) => {
                 rows = rows['rows'];
