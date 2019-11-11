@@ -1,6 +1,9 @@
 To go ahead and host this via Heroku, in Command Line after logging in with Heroku CLI type this command:
 git push heroku master
 
+To open your website with heroku, do:
+heroku open
+
 To connect your Heroku account to Postgres, first log into Heroku via:
 heroku login
 Then simply log in, and then you can connect to your Postgres database whole command-line with:

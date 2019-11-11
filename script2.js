@@ -30,7 +30,7 @@ con.connect(err => {
 })
 
 for(var i = 0; i < 50; i++) {
-    con.query(`INSERT INTO allTimeLeaderboard (position, username, score, grade, date, time) VALUES (${i}, "PlaceHolder", 0, "PlaceHolder", "PlaceHolder")`);
+    con.query(`INSERT INTO allTimeLeaderboard (position, username, score, grade, date, time) VALUES (${i}, 'PlaceHolder', 0, 'PlaceHolder', 'PlaceHolder')`);
 }
 
 // Using the InfZero.js API to run for everything
