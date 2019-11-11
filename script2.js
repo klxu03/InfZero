@@ -17,18 +17,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Using the InfZero.js API to run for everything
 app.use('/', require('./routes/api/infzero.js'));
 
-const { Client } = require("pg");
-
-//Connects to the PostgreSQL database
-const con = new Client({
-    connectionString: process.env.DATABASE_URL,
-    ssl: true
-});
-
-con.connect(err => {
-    if (err) console.error("Connection error", err.stack)
-})
-
 // Using the InfZero.js API to run for everything
 app.use('/', require('./routes/api/infzero.js'));
 
