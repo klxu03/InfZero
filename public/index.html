@@ -90,19 +90,7 @@ $("#tableMenu a").click(function(e){
 });
 
     document.getElementById('play-btn').onclick = function() {
-      // console.log("Play Button Clicked");
-        // $.ajax({
-        //   url: "../routes/api/infzero",
-        //   method: 'GET',
-        //   data: {"username": "Yomama", "grade": "11"},
-        //   success: function(data) {
-        //     window.location.replace("http://localhost:5000/game");
-        //     console.log(data);
-        //   }
-        // })
-
         //Redirects you to the game
-
         var username = document.getElementById('inputUsername').value
 
         window.location.replace("game/" + username + "/" + grade);

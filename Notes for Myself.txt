@@ -1,0 +1,2 @@
+To go ahead and host this via Heroku, in Command Line after logging in with Heroku CLI type this command:
+git push heroku master

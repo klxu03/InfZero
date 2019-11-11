@@ -76,15 +76,6 @@ function stop_fight() {
 
   //setPlayButton();
 
-  // window.location.replace("http://localhost:5000/game/infiniteloop/12");
-      // $.ajax({
-      //   url: "http://localhost:5000/leaderboard",
-      //   method: 'POST',
-      //   data: {"score": score},
-      //   success: function(data) {
-      //     console.log(data);
-      //   }
-      // })
   window.location.replace("/leaderboard/" + score);
 }
 
