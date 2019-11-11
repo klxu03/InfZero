@@ -29,10 +29,6 @@ con.connect(err => {
     if (err) console.error("Connection error", err.stack)
 })
 
-for(var i = 1; i < 501; i++) {
-    con.query(`INSERT INTO allTimeLeaderboard (position, username, score, grade, date, time) VALUES (${i}, 'PlaceHolder', 0, 'Its a Mystery', 'The Big Bang', 'The Big Bang')`);
-}
-
 // Using the InfZero.js API to run for everything
 app.use('/', require('./routes/api/infzero.js'));
 

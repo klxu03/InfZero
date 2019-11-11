@@ -51,7 +51,7 @@ router.get('/leaderboard/:score', (req, res) => {
     var place = 505;
     var conditionOfInsertion = true;
     for (var i = 1; i < 500; i++) {
-        con.query(`SELECT * FROM allTimeLeaderboard WHERE position = ${i + 1}`, (err, rows) => {
+        con.query(`SELECT * FROM allTimeLeaderboard WHERE position = ${i}`, (err, rows) => {
             rows = rows['rows'];
             let currScore = rows[0].score;
             if (runScore > currScore && conditionOfInsertion) {
