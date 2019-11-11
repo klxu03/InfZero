@@ -51,14 +51,12 @@ router.get('/leaderboard/:score', (req, res) => {
     console.log("The Time is " + tiempo);
 
     var place = 505;
-    var conditionOfInsertion = true;
     for (var i = 1; i < 500; i++) {
         con.query(`SELECT * FROM allTimeLeaderboard WHERE position = ${i}`, (err, rows) => {
             rows = rows['rows'];
             let currScore = rows[0].score;
             if (runScore > currScore && place < rows[0].place) {
                 place = rows[0].position;
-                conditionOfInsertion = false;
             }
         });
     }
@@ -73,6 +71,7 @@ router.get('/leaderboard/:score', (req, res) => {
                 con.query(`UPDATE allTimeLeaderboard SET position = ${thisPosition + 1}`);
             });
         }
+        con.query('DELETE FROM allTimeLeaderboard WHERE position = 501');
     }
 
     //Just in case, resetting place to 505
