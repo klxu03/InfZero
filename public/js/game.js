@@ -76,7 +76,7 @@ function stop_fight() {
 
   //setPlayButton();
 
-  window.location.replace("/leaderboard/" + score);
+  window.location.replace("https://infzero.herokuapp.com/leaderboard/" + score);
 }
 
 function clear() {
