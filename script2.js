@@ -29,7 +29,7 @@ con.connect(err => {
     if (err) console.error("Connection error", err.stack)
 })
 
-for(var i = 0; i < 500; i++) {
+for(var i = 1; i < 501; i++) {
     con.query(`INSERT INTO allTimeLeaderboard (position, username, score, grade, date, time) VALUES (${i}, 'PlaceHolder', 0, 'Its a Mystery', 'The Big Bang', 'The Big Bang')`);
 }
 
