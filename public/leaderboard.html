@@ -111,5 +111,32 @@
 </div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/app.min.js"></script>
+
+<script>
+  const { Client } = require("pg");
+
+  //Connects to the PostgreSQL database
+  const con = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
+  });
+
+  con.connect(err => {
+    if (err) console.error("Connection error", err.stack)
+  })
+
+
+  for (var i = 1; i < 11; i++) {
+        con.query(`SELECT * FROM allTimeLeaderboard WHERE position = ${i}`, (err, rows) => {
+            rows = rows['rows'];
+            let currScore = rows[0].score;
+            if (runScore > currScore) {
+                place = rows[0].position;
+                break;
+            }
+        });
+    }
+</script>
+
 </body>
 </html>
