@@ -9,7 +9,7 @@ const app = express();
 
 app.use(logger);
 
-const port = process.env.port || config.port;
+const port = process.env.PORT || config.port;
 console.log("Using Port:" + port);
 
 app.use(express.static(path.join(__dirname, 'public')));
