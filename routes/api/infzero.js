@@ -27,7 +27,7 @@ router.get('/leaderboard/:score', (req, res) => {
     console.log("Score is " + score);
     console.log("Once again, the username is " + username + " and the grade is " + grade);
 
-    return res.redirect('http://localhost:5000/leaderboard.html');
+    return res.redirect('/leaderboard.html');
 });
 
 // router.post('/', (req, res) => {
