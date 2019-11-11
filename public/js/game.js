@@ -85,7 +85,7 @@ function stop_fight() {
       //     console.log(data);
       //   }
       // })
-  window.location.replace("http://localhost:5000/leaderboard/" + score);
+  window.location.replace("/leaderboard/" + score);
 }
 
 function clear() {
