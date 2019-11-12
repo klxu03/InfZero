@@ -50,32 +50,48 @@ router.get('/leaderboard/:score', (req, res) => {
     console.log("Date is " + date);
     console.log("The Time is " + tiempo);
 
-    //Grabs every one's score that is under the player's scores
+    //Third times the charm, firstly updating all positions where it is less than runScore
+    con.query(`UPDATE allTimeLeaderboard SET position = (position + 1) WHERE score < ${runScore}`);
+
     con.query(`SELECT * FROM allTimeLeaderboard WHERE score < ${runScore}`, (err, rows) => {
         rows = rows['rows'];
-        var numOfMore = rows.length;
+        console.log('rows.length is ' + rows.length);
+        var newPosition = 501 - rows.length;
 
-        //Goes ahead and changes every single row underneath the current player's row
-        for(var i = (501 - numOfMore); i < 501; i++) {
-            con.query(`SELECT * FROM allTimeLeaderboard WHERE position = ${i}`, (err, rows2) => {
-                rows2 = rows2['rows'];
-
-                var query = {
-                    text: 'UPDATE allTimeLeaderboard SET position = $1, username = $2, score = $3, grade = $4, date = $5, time = $6',
-                    values: [(501 - numOfMore), username, runScore, grade, date, tiempo],
-                }
-
-                con.query(query);
-            })
-        }
-
-        //Inserts the player's score
         var query = {
             text: 'INSERT INTO allTimeLeaderboard(position, username, score, grade, date, time) VALUES($1, $2, $3, $4, $5, $6)',
-            values: [(501 - numOfMore), username, runScore, grade, date, tiempo],
+            values: [newPosition, username, runScore, grade, date, tiempo],
         }
         con.query(query);
     });
+
+    //Another failed attempt, but Kevin Higgs suggest an amazing new idea
+    //Grabs every one's score that is under the player's scores
+    // con.query(`SELECT * FROM allTimeLeaderboard WHERE score < ${runScore}`, (err, rows) => {
+    //     rows = rows['rows'];
+    //     var numOfMore = rows.length;
+
+    //     //Goes ahead and changes every single row underneath the current player's row
+    //     for(var i = (501 - numOfMore); i < 501; i++) {
+    //         con.query(`SELECT * FROM allTimeLeaderboard WHERE position = ${i}`, (err, rows2) => {
+    //             rows2 = rows2['rows'];
+
+    //             var query = {
+    //                 text: 'UPDATE allTimeLeaderboard SET position = $1, username = $2, score = $3, grade = $4, date = $5, time = $6',
+    //                 values: [(501 - rows2[0].position), rows2[0].username, rows2[0].score, grade, date, tiempo],
+    //             }
+
+    //             con.query(query);
+    //         })
+    //     }
+
+    //     //Inserts the player's score
+        // var query = {
+        //     text: 'INSERT INTO allTimeLeaderboard(position, username, score, grade, date, time) VALUES($1, $2, $3, $4, $5, $6)',
+        //     values: [(501 - numOfMore), username, runScore, grade, date, tiempo],
+        // }
+        // con.query(query);
+    // });
 
     //Relics from not working with Kevin Higgs
 
