@@ -27,5 +27,20 @@ function onMouseUpdate(e) {
   console.log(x, y);
   start_fight(x, y);
 }
-        </script>
+
+document.addEventListener("click", mySecondFunction);
+function mySecondFunction() {
+  x = e.pageX - 100;
+  y = e.pageY - 100;
+  console.log(x, y);
+  start_fight(x, y);
+}
+
+document.addEventListener("mouseout", myThirdFunction);
+
+function myThirdFunction() {
+  document.getElementById("demo").innerHTML += "Moused out!<br>"
+  stop_fight();
+}
+  </script>
     </html>
