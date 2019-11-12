@@ -61,36 +61,46 @@
       let el = document.getElementById("myDIV");
       var newHTML = "something"; //The Variable for the HTML I'm About to Add
 
-      const { Client } = require("pg");
-
-      //Connects to the PostgreSQL database
-      const con = new Client({
-      connectionString: process.env.DATABASE_URL,
-      ssl: true
+      $(() => {
+          $.ajax({
+              url: '/get_leaderboard',
+              method: 'GET',
+              success: data => {
+                  console.log(data['data']);
+              }
+          })
       });
 
-      con.connect(err => {
-      if (err) console.error("Connection error", err.stack)
-      })
+      // const { Client } = require("pg");
 
-      console.log("Please log, telling me this works");
-      for (var i = 1; i < 11; i++) {
-      console.log("Ran the for loop " + i + " times so far");
-      newHTML += '<tr><th scope = "row">' + i + '</th><td>';
-      con.query(`SELECT * FROM allTimeLeaderboard WHERE position = ${i}`, (err, rows) => {
-      rows = rows['rows'];
-      let username = rows[0].username;
-      newHTML += '' + username + '</td><td>';
-      let score = rows[0].score;
-      newHTML += '' + score + '</td><td>';
-      let grade = rows[0].grade;
-      newHTML += '' + grade + '</td></tr>'
-      });
-      }
+      // //Connects to the PostgreSQL database
+      // const con = new Client({
+      // connectionString: process.env.DATABASE_URL,
+      // ssl: true
+      // });
 
-      //Adding in the table rows
-      console.log("New HTML is " + newHTML);
-      document.getElementById("myDIV").innerHTML = newHTML;
+      // con.connect(err => {
+      // if (err) console.error("Connection error", err.stack)
+      // })
+
+      // console.log("Please log, telling me this works");
+      // for (var i = 1; i < 11; i++) {
+      // console.log("Ran the for loop " + i + " times so far");
+      // newHTML += '<tr><th scope = "row">' + i + '</th><td>';
+      // con.query(`SELECT * FROM allTimeLeaderboard WHERE position = ${i}`, (err, rows) => {
+      // rows = rows['rows'];
+      // let username = rows[0].username;
+      // newHTML += '' + username + '</td><td>';
+      // let score = rows[0].score;
+      // newHTML += '' + score + '</td><td>';
+      // let grade = rows[0].grade;
+      // newHTML += '' + grade + '</td></tr>'
+      // });
+      // }
+
+      // //Adding in the table rows
+      // console.log("New HTML is " + newHTML);
+      // document.getElementById("myDIV").innerHTML = newHTML;
     } 
   </script>
 
