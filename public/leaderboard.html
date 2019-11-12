@@ -69,6 +69,7 @@
             method: 'GET',
             success: data => {
                 console.log(data['data']);
+                put_rows(data['data']);
             }
         });
 
