@@ -24,10 +24,43 @@
 </head>
 <body onload = "startFunction()">
 
-  <script>
+<div class="animation anim-dark" data-aos="slide-effect-2">
+<div class="wrapper animation-inner">
+<div class="background ending-gif overlay">
+</div>
+
+<div class="content-section d-flex justify-content-center align-items-center">
+  <div class="v-lines" style = "color: white">
+  <div class="vline-1">LMAO ANIMATIONS</div>
+  <div class="vline-2">
+      <img src = "images/schwartz.png">
+  </div>
+  <div class="vline-3">TAKE MULTIVAR</div>
+  <div class="vline-4">THERE'S A WONDERFUL COURSE CALLED COGO</div>
+  </div>
+
+  <div class="container">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Username</th>
+                <th scope="col">Score</th>
+                <th scope = "col">Grade</th>
+              </tr>
+            </thead>
+            <tbody>
+                <div id="myDIV">This is a div element.</div>
+            </tbody>
+          </table>
+  </div>
+</div>
+
+
+<script>
     function startFunction() {
-      let el = document.getElementById("tableBody");
-      var newHTML = ''; //The Variable for the HTML I'm About to Add
+      let el = document.getElementById("myDIV");
+      var newHTML = "something"; //The Variable for the HTML I'm About to Add
 
       const { Client } = require("pg");
 
@@ -58,41 +91,9 @@
 
       //Adding in the table rows
       console.log("New HTML is " + newHTML);
-      el.innerHTML = newHTML;
+      document.getElementById("myDIV").innerHTML = newHTML;
     } 
   </script>
-
-<div class="animation anim-dark" data-aos="slide-effect-2">
-<div class="wrapper animation-inner">
-<div class="background ending-gif overlay">
-</div>
-
-<div class="content-section d-flex justify-content-center align-items-center">
-  <div class="v-lines" style = "color: white">
-  <div class="vline-1">LMAO ANIMATIONS</div>
-  <div class="vline-2">
-      <img src = "images/schwartz.png">
-  </div>
-  <div class="vline-3">TAKE MULTIVAR</div>
-  <div class="vline-4">THERE'S A WONDERFUL COURSE CALLED COGO</div>
-  </div>
-
-  <div class="container">
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Username</th>
-                <th scope="col">Score</th>
-                <th scope = "col">Grade</th>
-              </tr>
-            </thead>
-            <tbody>
-            <div id = "tableBody"> </div>
-            </tbody>
-          </table>
-  </div>
-</div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/app.min.js"></script>
 
