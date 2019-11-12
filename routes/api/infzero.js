@@ -51,7 +51,7 @@ router.get('/leaderboard/:score', (req, res) => {
     console.log("The Time is " + tiempo);
 
     //Grabs every one's score that is under the player's scores
-    con.query(`SELECT * FROM allTimeLeaderboard WHERE score > ${runScore}`, (err, rows) => {
+    con.query(`SELECT * FROM allTimeLeaderboard WHERE score < ${runScore}`, (err, rows) => {
         rows = rows['rows'];
         var numOfMore = rows.length;
 
