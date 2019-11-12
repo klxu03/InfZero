@@ -97,17 +97,17 @@
       let newHTML = '';
       for (let i = 0; i < 10; i++) {
         newHTML += '<tr><th scope = "row">' + (i + 1) + '</th><td>';
-          rows = board[i];
-          if (rows == null) {
-            console.log(rows);
-            continue;
-          }
-          let username = rows[0].username;
-          newHTML += '' + username + '</td><td>';
-          let score = rows[0].score;
-          newHTML += '' + score + '</td><td>';
-          let grade = rows[0].grade;
-          newHTML += '' + grade + '</td></tr>'
+        rows = board[i];
+        if (rows == null) {
+          console.log(rows);
+          continue;
+        }
+        let username = rows.username;
+        newHTML += '' + username + '</td><td>';
+        let score = rows.score;
+        newHTML += '' + score + '</td><td>';
+        let grade = rows.grade;
+        newHTML += '' + grade + '</td></tr>'
       }
 
       console.log("New HTML is " + newHTML);
