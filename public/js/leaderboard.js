@@ -22,6 +22,16 @@ con.connect(err => {
 if (err) console.error("Connection error", err.stack)
 })
 
+$(() => {
+    $.ajax({
+        url: '/get_leaderboard',
+        method: 'GET',
+        success: data => {
+            console.log(data['data']);
+        }
+    })
+});
+
 for (var i = 1; i < 11; i++) {
 newHTML += '<tr><th scope = "row">' + i + '</th><td>';
 con.query(`SELECT * FROM allTimeLeaderboard WHERE position = ${i}`, (err, rows) => {
