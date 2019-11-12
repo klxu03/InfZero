@@ -6596,6 +6596,13 @@ a.bg-inverse:focus,a.bg-inverse:hover {
     align-self: center!important
 }
 
+.align-self-left {
+    -webkit-align-self: left!important;
+    -ms-flex-item-align: left!important;
+    -ms-grid-row-align: left!important;
+    align-self: left!important
+}
+
 .align-self-baseline {
     -webkit-align-self: baseline!important;
     -ms-flex-item-align: baseline!important;
@@ -12255,6 +12262,10 @@ a:active,a:focus,a:hover {
 
 .center-content {
     text-align: center
+}
+
+.left-content {
+    text-align: left
 }
 
 .center-content.text-light {
