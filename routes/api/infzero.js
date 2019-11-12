@@ -142,7 +142,7 @@ router.get('/get_leaderboard', (req, res) => {
     let counter = 0;
     for (var i = 1; i < 11; i++) {
         con.query(`SELECT * FROM allTimeLeaderboard WHERE position = ${i}`, (err, rows) => {
-            entry = rows['rows'][0];
+            let entry = rows['rows'][0];
             board.push(entry);
             ++counter;
             if (counter == 10) {
