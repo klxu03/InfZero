@@ -40,12 +40,12 @@
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Name</th>
+                    <th scope="col">Username</th>
                     <th scope="col">Score</th>
                     <th scope = "col">Grade</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id = "tableBody">
                   <tr>
                     <th scope="row">1</th>
                     <td>Mark</td>
@@ -114,13 +114,17 @@
 
 <script>
 
-  // element
-  // <table id="tbody"></table>
-  // let el = document.getElementById("tbody")
-  // for entry in arr
-  // html = "<tr><td>entry.name</td><td>entry.score</td></tr>"
-  // el.innerHTML = el.innerHTML + html
+  //Pseudocode for dynamic html
+  /* element
+  <table id="tbody"></table>
+  let el = document.getElementById("tbody")
+  for entry in arr
+  html = "<tr><td>entry.name</td><td>entry.score</td></tr>"
+  el.innerHTML = el.innerHTML + html */
 
+  //This is the Element for inserting things into the Table Body
+  let el = document.getElementById("tableBody");
+  var html = ''; //The Variable for the HTML I'm About to Add
 
   const { Client } = require("pg");
 
@@ -135,10 +139,20 @@
   })
 
   for (var i = 1; i < 11; i++) {
-        con.query(`SELECT * FROM allTimeLeaderboard WHERE position = ${i}`, (err, rows) => {
-
-        });
-    }
+      html += '<tr><th scope = "row">' + i + '</th><td>';
+      con.query(`SELECT * FROM allTimeLeaderboard WHERE position = ${i}`, (err, rows) => {
+        rows = rows['rows'];
+        let username = rows[0].username;
+        html += '' + username + '</td><td>';
+        let score = rows[0].score;
+        html += '' + score + '</td><td>';
+        let grade = rows[0].grade;
+        html += '' + grade + '</td></tr>'
+      });
+  }
+  
+  //Adding in the table rows
+  el.innerHTML = el.innerHTML + html;
 </script>
 
 </body>
