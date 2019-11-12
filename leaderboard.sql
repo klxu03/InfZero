@@ -11,4 +11,6 @@ CREATE TABLE allTimeLeaderboard (
 
 INSERT INTO allTimeLeaderboard (position, username, score, grade, date, time) 
 VALUES
-(0, 'PlaceHolder', 10, 'Mysterious', 'The Big Bang', 'The Big Bang');
+(${i}, 'PlaceHolder', 10, 'Mysterious', 'The Big Bang', 'The Big Bang');
+
+SELECT * FROM allTimeLeaderboardORDER BY score;
