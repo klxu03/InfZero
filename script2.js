@@ -12,17 +12,17 @@ app.use(logger);
 const port = process.env.PORT || config.port;
 console.log("Using Port:" + port);
 
-const { Client } = require("pg");
+// const { Client } = require("pg");
 
-//Connects to the PostgreSQL database
-const con = new Client({
-    connectionString: process.env.DATABASE_URL,
-    ssl: true
-});
+// //Connects to the PostgreSQL database
+// const con = new Client({
+//     connectionString: process.env.DATABASE_URL,
+//     ssl: true
+// });
 
-for (var i = 1; i < 502; i++) {
-    con.query(`INSERT INTO allTimeLeaderboard (position, username, score, grade, date, time) VALUES (${i}, 'PlaceHolder', 10, 'Mysterious', 'The Big Bang', 'The Big Bang')`);
-}
+// for (var i = 1; i < 502; i++) {
+//     con.query(`INSERT INTO allTimeLeaderboard (position, username, score, grade, date, time) VALUES (${i}, 'PlaceHolder', 10, 'Mysterious', 'The Big Bang', 'The Big Bang')`);
+// }
 
 app.use(express.static(path.join(__dirname, 'public')));
 

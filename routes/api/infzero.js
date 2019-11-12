@@ -31,7 +31,15 @@ router.get('/game/:username/:grade', (req, res) => {
     console.log("username is " + username);
     console.log("grade is " + grade);
 
-    return res.redirect('/game.html');
+    var condition = true;
+    for (var i = 1; i < 502; i++) {
+        condition = false;
+        con.query(`INSERT INTO allTimeLeaderboard (position, username, score, grade, date, time) 
+        VALUES (${i}, 'PlaceHolder', 10, 'Mysterious', 'The Big Bang', 'The Big Bang')`);
+    }
+
+    //Makes sure that the previous insert 500 rows gets triggered first
+    if (!condition) return res.redirect('/game.html');
 });
 
 router.get('/leaderboard/:score', (req, res) => {
@@ -51,7 +59,9 @@ router.get('/leaderboard/:score', (req, res) => {
     console.log("The Time is " + tiempo);
 
     //Third times the charm, firstly updating all positions where it is less than runScore
-    con.query(`UPDATE allTimeLeaderboard SET position = (position + 1) WHERE score < ${runScore}`);
+    con.query(`UPDATE allTimeLeaderboard SET position = (position + 1) WHERE score < ${runScore}`, (err) => {
+        if (err) throw err;
+    });
 
     con.query(`SELECT * FROM allTimeLeaderboard WHERE score < ${runScore}`, (err, rows) => {
         rows = rows['rows'];
@@ -63,6 +73,10 @@ router.get('/leaderboard/:score', (req, res) => {
             values: [newPosition, username, runScore, grade, date, tiempo],
         }
         con.query(query);
+    });
+
+    con.query('DELETE * FROM allTimeLeaderboard WHERE position = 501', (err) => {
+        if (err) throw err;
     });
 
     //Another failed attempt, but Kevin Higgs suggest an amazing new idea
