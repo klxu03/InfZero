@@ -98,7 +98,8 @@
       for (let i = 0; i < 10; i++) {
         newHTML += '<tr><th scope = "row">' + (i + 1) + '</th><td>';
           rows = board[i];
-          if (rows === null) {
+          if (rows == null) {
+            console.log(rows);
             continue;
           }
           let username = rows[0].username;
