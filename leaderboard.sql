@@ -13,4 +13,4 @@ INSERT INTO allTimeLeaderboard (position, username, score, grade, date, time)
 VALUES
 (${i}, 'PlaceHolder', 10, 'Mysterious', 'The Big Bang', 'The Big Bang');
 
-SELECT * FROM allTimeLeaderboard ORDER BY score;
+SELECT * FROM allTimeLeaderboard ORDER BY position;
