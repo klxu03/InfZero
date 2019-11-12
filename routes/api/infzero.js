@@ -76,7 +76,6 @@ router.get('/leaderboard/:score', (req, res) => {
     });
 
     con.query('DELETE FROM allTimeLeaderboard WHERE position = 501');
-    con.query('DELETE FROM allTimeLeaderboard WHERE position = 502');
 
     //Another failed attempt, but Kevin Higgs suggest an amazing new idea
     //Grabs every one's score that is under the player's scores
