@@ -138,8 +138,8 @@ router.get('/leaderboard/:score', (req, res) => {
 });
 
 router.get('/get_leaderboard', (req, res) => {
-    board = [];
-    counter = 0;
+    let board = [];
+    let counter = 0;
     for (var i = 1; i < 11; i++) {
         con.query(`SELECT * FROM allTimeLeaderboard WHERE position = ${i}`, (err, rows) => {
             entry = rows['rows'][0];
