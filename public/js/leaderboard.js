@@ -37,4 +37,4 @@ con.query(`SELECT * FROM allTimeLeaderboard WHERE position = ${i}`, (err, rows) 
 
 //Adding in the table rows
 console.log("New HTML is " + newHTML);
-el.innerHTML = el.innerHTML + newHTML;
+el.innerHTML = newHTML;
