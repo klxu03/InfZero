@@ -10,6 +10,9 @@
 <!-- Bootstrap -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <!-- My Table -->
 <link rel="stylesheet" href="css/style.css" />
 
@@ -61,15 +64,13 @@
       let el = document.getElementById("myDIV");
       var newHTML = "something"; //The Variable for the HTML I'm About to Add
 
-      $(() => {
-          $.ajax({
-              url: '/get_leaderboard',
-              method: 'GET',
-              success: data => {
-                  console.log(data['data']);
-              }
-          })
-      });
+        $.ajax({
+            url: '/get_leaderboard',
+            method: 'GET',
+            success: data => {
+                console.log(data['data']);
+            }
+        });
 
       // const { Client } = require("pg");
 
