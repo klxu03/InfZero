@@ -50,32 +50,61 @@ router.get('/leaderboard/:score', (req, res) => {
     console.log("Date is " + date);
     console.log("The Time is " + tiempo);
 
-    var place = 505;
-    for (var i = 1; i < 500; i++) {
-        con.query(`SELECT * FROM allTimeLeaderboard WHERE position = ${i}`, (err, rows) => {
-            rows = rows['rows'];
-            let currScore = rows[0].score;
-            if (runScore > currScore && place < rows[0].place) {
-                place = rows[0].position;
-            }
-        });
-    }
+    //Grabs every one's score that is under the player's scores
+    con.query(`SELECT * FROM allTimeLeaderboard WHERE score > ${runScore}`, (err, rows) => {
+        rows = rows['rows'];
+        var numOfMore = rows.length;
 
-    if (place != 505) {//As long as the new person actually placed in the top 500
-        //This goes ahead and replaces all the previous rows with an extra number in position since everything gets moved down by one
-        con.query(`INSERT INTO allTimeLeaderboard (position, username, score, grade, date, time) VALUES (${place}, ${username}, ${runScore}, ${grade}, ${date}, ${tiempo})`);
-        for (var i = place + 1; i < 500; i++) {
-            con.query(`SELECT * FROM allTimeLeaderboard WHERE position = ${i}`, (err, rows) => {
-                rows = rows['rows'];
-                var thisPosition = rows[0].position;
-                con.query(`UPDATE allTimeLeaderboard SET position = ${thisPosition + 1}`);
-            });
+        //Goes ahead and changes every single row underneath the current player's row
+        for(var i = (501 - numOfMore); i < 501; i++) {
+            con.query(`SELECT * FROM allTimeLeaderboard WHERE position = ${i}`, (err, rows2) => {
+                rows2 = rows2['rows'];
+
+                var query = {
+                    text: 'UPDATE allTimeLeaderboard SET position = $1, username = $2, score = $3, grade = $4, date = $5, time = $6',
+                    values: [(501 - numOfMore), username, runScore, grade, date, tiempo],
+                }
+
+                con.query(query);
+            })
         }
-        con.query('DELETE FROM allTimeLeaderboard WHERE position = 501');
-    }
 
-    //Just in case, resetting place to 505
-    place = 505;
+        //Inserts the player's score
+        var query = {
+            text: 'INSERT INTO allTimeLeaderboard(position, username, score, grade, date, time) VALUES($1, $2, $3, $4, $5, $6)',
+            values: [(501 - numOfMore), username, runScore, grade, date, tiempo],
+        }
+        con.query(query);
+    });
+
+    //Relics from not working with Kevin Higgs
+
+    // var place = 505;
+    // for (var i = 1; i < 500; i++) {
+    //     con.query(`SELECT * FROM allTimeLeaderboard WHERE position = ${i}`, (err, rows) => {
+    //         rows = rows['rows'];
+    //         let currScore = rows[0].score;
+    //         if (runScore > currScore && place < rows[0].place) {
+    //             place = rows[0].position;
+    //         }
+    //     });
+    // }
+
+    // if (place != 505) {//As long as the new person actually placed in the top 500
+    //     //This goes ahead and replaces all the previous rows with an extra number in position since everything gets moved down by one
+    //     con.query(`INSERT INTO allTimeLeaderboard (position, username, score, grade, date, time) VALUES (${place}, ${username}, ${runScore}, ${grade}, ${date}, ${tiempo})`);
+    //     for (var i = place + 1; i < 500; i++) {
+    //         con.query(`SELECT * FROM allTimeLeaderboard WHERE position = ${i}`, (err, rows) => {
+    //             rows = rows['rows'];
+    //             var thisPosition = rows[0].position;
+    //             con.query(`UPDATE allTimeLeaderboard SET position = ${thisPosition + 1}`);
+    //         });
+    //     }
+    //     con.query('DELETE FROM allTimeLeaderboard WHERE position = 501');
+    // }
+
+    // //Just in case, resetting place to 505
+    // place = 505;
 
     return res.redirect('/leaderboard.html');
 });
