@@ -21,9 +21,7 @@ const con = new Client({
 });
 
 for (var i = 1; i < 502; i++) {
-    con.query(`INSERT INTO allTimeLeaderboard (position, username, score, grade, date, time) 
-    VALUES
-    (${i}, 'PlaceHolder', 10, 'Mysterious', 'The Big Bang', 'The Big Bang')`);
+    con.query(`INSERT INTO allTimeLeaderboard (position, username, score, grade, date, time) VALUES (${i}, 'PlaceHolder', 10, 'Mysterious', 'The Big Bang', 'The Big Bang')`);
 }
 
 app.use(express.static(path.join(__dirname, 'public')));
