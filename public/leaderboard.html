@@ -89,7 +89,7 @@
     } 
 
     function put_rows(board) {
-      let newHTML = '<table>';
+      let newHTML = '';
       for (let i = 0; i < 10; i++) {
         newHTML += '<tr><th scope = "row">' + (i + 1) + '</th><td>';
         rows = board[i];
@@ -105,10 +105,10 @@
         newHTML += '' + grade + '</td></tr>'
       }
 
-      newHTML += '</table>';
+      newHTML += '';
 
       console.log("New HTML is " + newHTML);
-      document.body.innerHTML = newHTML;
+      el.innerHTML = newHTML;
     }
   </script>
 
