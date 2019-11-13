@@ -31,16 +31,16 @@ router.get('/game/:username/:grade', (req, res) => {
     console.log("username is " + username);
     console.log("grade is " + grade);
 
-    // //Restocks 500 rows
-    // var condition = true;
-    // for (var i = 1; i < 501; i++) {
-    //     condition = false;
-    //     con.query(`INSERT INTO allTimeLeaderboard (position, username, score, grade, date, time) 
-    //     VALUES (${i}, 'PlaceHolder', 10, 'Mysterious', 'The Big Bang', 'The Big Bang')`);
-    // }
+    //Restocks 500 rows
+    var condition = true;
+    for (var i = 1; i < 501; i++) {
+        condition = false;
+        con.query(`INSERT INTO allTimeLeaderboard (position, username, score, grade, date, time) 
+        VALUES (${i}, 'PlaceHolder', 10, 'Mysterious', 'The Big Bang', 'The Big Bang')`);
+    }
 
-    // //Makes sure that the previous insert 500 rows gets triggered first
-    // if (!condition) 
+    //Makes sure that the previous insert 500 rows gets triggered first
+    if (!condition) 
     return res.redirect('/game.html');
 });
 
